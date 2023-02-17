@@ -1,37 +1,43 @@
-from .api import bots
-from .api import groups
-from .api import chats
-from .api import user
-from .api import attachments
-from .session import Session
+import os
+import requests
+import time
+import datetime
+import groupy
+from groupy import Client
+from groupy import attachments
+from groupy.api import messages
 
 
-class Client:
-    """The API client.
+access_token = "oPdzC1eeHQiTf769kv4aW2Z2p85pfWHHpjb1n7iy"
+group_id = "92140191"
+bot_id = "868ad2fd269ab3cb057a68ed5a"
+# The URL for the endpoint that sends messages to a specific group.
+group_url = f"https://api.groupme.com/v3/groups/{group_id}/messages"
+# The URL for the endpoint that gets the members of a specific group.
+members_url = f"https://api.groupme.com/v3/groups/{group_id}/members?token={access_token}"
+# The base URL for the GroupMe API.
+bot_url = "https://api.groupme.com/v3/bots/post"
+# Create a Groupy client
+client = Client.from_token(access_token)
+# Find the group with the given group_id
+group = client.groups.get(group_id)
+# Get the members of the group
+members = group.members
 
-    The client is the main point of interaction. It can directly list groups,
-    chats, bots, and provide your user information. It can also download
-    the image of a message attachment.
 
-    :param session: the request session
-    :type session: :class:`~groupy.session.Session`
-    """
 
-    def __init__(self, session):
-        self.session = session
-        self.groups = groups.Groups(self.session)
-        self.chats = chats.Chats(self.session)
-        self.bots = bots.Bots(self.session)
-        self.user = user.User(self.session)
-        self.images = attachments.Images(self.session)
+def send_message(memessage):
+    group.post(text=memessage)
+    print("My account successfully posted!")
+   
+send_message("me")
 
-    @classmethod
-    def from_token(cls, token):
-        """Create a client directly from an API token.
 
-        :param str token: an API token
-        :return: a client
-        :rtype: :class:`~groupy.client.Client`
-        """
-        session = Session(token=token)
-        return cls(session)
+bot = groupy.Bot.bot_with_id(bot_id)
+## 🌎💯🔥🔑🚨🚨⏰✅
+    
+def g_message(gmessage):
+    bot.post(text=gmessager)
+    print("Bot successfully posted!")
+   
+g_message("gbot")    
